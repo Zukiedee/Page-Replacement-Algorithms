@@ -6,9 +6,7 @@ FIFO, LRU, Optimal Page Replacement Algorithms
 '''
 
 import random
-import queue
 import sys
-
 
 ''' 
 FIFO Page Replacement Algorithm
@@ -38,7 +36,6 @@ def FIFO(size, pages):
                 frame.pop(0)  
                 frame.append(page)  
                 page_faults += 1
-        print(frame)
     return page_faults
 
     
@@ -75,7 +72,6 @@ def LRU(size, pages):
             else:
                 frame.remove(page)
                 frame.insert(0,page)
-        print(frame)
     return page_faults
 
 
@@ -121,7 +117,6 @@ def OPT(size, pages):
             # Does nothing if page found    
             else: 
                 continue  
-        print(frame)
     return page_faults
     
     
@@ -129,8 +124,8 @@ def OPT(size, pages):
 Main method
 '''
 def main():
-    size = sys.argv[1]                                                          # size of frame
-    N = 32
+    size = int(sys.argv[1])                                                     # size of frame
+    N = int(sys.argv[2]) 
     pages = list()                                                              # page reference string
     
     # Generates a random page-reference string
@@ -142,7 +137,7 @@ def main():
     print ('OPT', OPT(size, pages), 'page faults.')
     
 if __name__ == "__main__":
-    if len(sys.argv) !=2:
-        print ('Usage: python paging.py [number of pages]')
+    if len(sys.argv) !=3:
+        print ('Usage: python paging.py [number of pages] [size of sequence]')
     else:
         main()
